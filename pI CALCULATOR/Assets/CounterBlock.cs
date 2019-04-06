@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CounterBlock : MonoBehaviour {
     public Rigidbody2D Countingrb;
+    public ForcingBlock forcingscript;
 
     public float vel = 0;
     public float mass1 = 1;
@@ -15,13 +16,22 @@ public class CounterBlock : MonoBehaviour {
     }
 	
 	void Update () {
-        //Debug.Log(Countingrb.velocity);
+        vel2 = forcingscript.vel2;
 	}
     void OnCollisionEnter2D(Collision2D hit)
     {
-        vel = ((mass1 - mass2) / (mass1 + mass2)) * vel + ((2*mass2)/mass1 + mass2) * vel2;
-        Countingrb.velocity = new Vector3(vel, 0, 0);
-        Debug.Log(tag);
-        //print("hellothere");
+
+        mass2 = hit.collider.attachedRigidbody.mass;
+        if(hit.collider.tag != "Wall")
+        {
+            vel = ((mass1 - mass2) / (mass1 + mass2)) * vel + ((2 * mass2) / (mass1 + mass2)) * vel2;
+            Countingrb.velocity = new Vector3(vel, 0, 0);
+        }
+        else
+        {
+            //Vector3 velo = new Vector3(vel * -1, 0, 0);
+            vel *= -1;
+            Countingrb.velocity = new Vector2(vel, 0);
+        }
     }
 }
