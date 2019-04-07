@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="Assets\CounterBlock.cs" />
     <Compile Include="Assets\ForcingBlock.cs" />
+    <Compile Include="Assets\Textscript.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>/Users/lidia/Documents/GitHub/Collision/pI CALCULATOR/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
